@@ -1,6 +1,6 @@
 [package]
 name = "demet"
-version = "0.0.0"
+version = "0.1.0"
 description = "Uygulama demetlerini tek kısayolla başlatan araç"
 authors = ["Enes Bilik"]
 repository = "https://github.com/bilikenes/demet"
