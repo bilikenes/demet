@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Camera, Plus, Rocket, Settings } from "lucide-react";
-import { api, onBundleResult, onBundleStarted, setWindowTheme } from "./api";
+import { api, inTauri, onBundleResult, onBundleStarted, setWindowTheme } from "./api";
 import { AppPickerModal } from "./AppPickerModal";
 import { BundleGlyph } from "./BundleGlyph";
 import { BundleView } from "./BundleView";
@@ -8,10 +8,11 @@ import { SettingsView } from "./SettingsView";
 import type { AppBundle, BundleEvent } from "./types";
 import { newBundle, newItem } from "./types";
 import {
-  Alert, Badge, Button, Card, EmptyState, Sidebar, Spinner, ToastProvider, useToast,
+  Alert, Badge, Button, Card, EmptyState, Progress, Sidebar, Spinner, ToastProvider, useToast,
   type SidebarEntry,
 } from "./ui";
 import { ConfigProvider, useConfig } from "./useConfig";
+import { useUpdater } from "./updater";
 import { useTheme } from "./useTheme";
 
 export default function App() {
@@ -52,6 +53,10 @@ function Shell() {
   const { config, warnings, update } = useConfig();
   const [view, setView] = useState<string>(() => config.bundles[0]?.id ?? SETTINGS);
   const [snapshotOpen, setSnapshotOpen] = useState(false);
+  const updater = useUpdater(inTauri);
+  const [updateDismissed, setUpdateDismissed] = useState(false);
+  const updateState = updater.state;
+  const updateReady = updateState.kind === "available" || updateState.kind === "downloading";
 
   useEffect(() => { void api.appReady(); }, []);
   useEffect(() => { void setWindowTheme(mode); }, [mode]);
@@ -98,7 +103,12 @@ function Shell() {
     { value: NEW_BUNDLE, label: "Yeni demet", icon: <Plus size={18} /> },
     { value: SNAPSHOT, label: "Açık uygulamalardan", icon: <Camera size={18} /> },
     { section: "Uygulama" },
-    { value: SETTINGS, label: "Ayarlar", icon: <Settings size={18} /> },
+    {
+      value: SETTINGS,
+      label: "Ayarlar",
+      icon: <Settings size={18} />,
+      badge: updateReady ? <Badge>Güncelleme</Badge> : undefined,
+    },
   ];
 
   const onSelect = (value: string) => {
@@ -131,8 +141,29 @@ function Shell() {
             </div>
           )}
 
+          {updateReady && !(updateDismissed && updateState.kind === "available") && (
+            <div className="app-warnings">
+              <Alert
+                tone="accent"
+                title={updateState.kind === "available" ? `Yeni sürüm hazır: ${updateState.version}` : "Güncelleme indiriliyor"}
+                onClose={updateState.kind === "available" ? () => setUpdateDismissed(true) : undefined}
+                action={
+                  updateState.kind === "available" ? (
+                    <Button onClick={() => void updater.install()}>Şimdi güncelle</Button>
+                  ) : undefined
+                }
+              >
+                {updateState.kind === "downloading" ? (
+                  <Progress value={updateState.percent ?? 0} label="Güncelleme indiriliyor" />
+                ) : (
+                  "Kurulumdan sonra Demet kendiliğinden yeniden açılır."
+                )}
+              </Alert>
+            </div>
+          )}
+
           {view === SETTINGS ? (
-            <SettingsView mode={mode} onModeChange={setMode} />
+            <SettingsView mode={mode} onModeChange={setMode} updater={updater} />
           ) : selected ? (
             <BundleView key={selected.id} bundle={selected} onDeleted={() => setView(config.bundles.find((b) => b.id !== selected.id)?.id ?? SETTINGS)} />
           ) : (

@@ -206,6 +206,8 @@ pub fn run() {
             show_dashboard(app);
         }))
         .plugin(tauri_plugin_dialog::init())
+        .plugin(tauri_plugin_process::init())
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .manage(AppState {
             config: Mutex::new(initial_config.clone()),
             start_minimized,

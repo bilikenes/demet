@@ -9,7 +9,7 @@ import type {
 } from "./types";
 import { newBundle, newItem } from "./types";
 
-const inTauri = typeof window !== "undefined" && "__TAURI_INTERNALS__" in window;
+export const inTauri = typeof window !== "undefined" && "__TAURI_INTERNALS__" in window;
 
 // ---------------------------------------------------------------- sahte arka uç
 
@@ -153,6 +153,16 @@ export async function pickAnyFile(title: string): Promise<string | null> {
   if (!inTauri) return null;
   const result = await open({ multiple: false, title });
   return typeof result === "string" ? result : null;
+}
+
+export async function getAppVersion(): Promise<string> {
+  if (!inTauri) return "geliştirme";
+  try {
+    const { getVersion } = await import("@tauri-apps/api/app");
+    return await getVersion();
+  } catch {
+    return "";
+  }
 }
 
 export async function setWindowTheme(mode: "light" | "dark") {

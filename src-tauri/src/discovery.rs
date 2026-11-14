@@ -221,7 +221,10 @@ mod tests {
         assert!(icon.len() > 200);
     }
 
+    /// Kurulu uygulamalara bağlı: GitHub'ın boş Windows makinesinde çalışmaz.
+    /// Yerelde çalıştır: `cargo test --lib -- --ignored`
     #[test]
+    #[ignore = "masaüstüne kurulu uygulamalar gerektirir"]
     fn finds_start_menu_apps_with_names_and_targets() {
         let apps = installed_apps(true);
         assert!(!apps.is_empty(), "Başlat menüsünde uygulama bulunamadı");
@@ -238,6 +241,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore = "masaüstüne kurulu uygulamalar gerektirir"]
     fn resolves_a_real_shortcut() {
         let lnk = installed_apps(false)
             .into_iter()

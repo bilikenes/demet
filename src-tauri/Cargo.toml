@@ -1,7 +1,9 @@
 [package]
 name = "demet"
-version = "0.1.0"
+version = "0.0.0"
 description = "Uygulama demetlerini tek kısayolla başlatan araç"
+authors = ["Enes Bilik"]
+repository = "https://github.com/bilikenes/demet"
 edition = "2021"
 
 [lib]
@@ -15,6 +17,8 @@ tauri-build = { version = "2", features = [] }
 tauri = { version = "2", features = ["tray-icon"] }
 tauri-plugin-dialog = "2"
 tauri-plugin-single-instance = "2"
+tauri-plugin-updater = "2"
+tauri-plugin-process = "2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 winreg = "0.56"

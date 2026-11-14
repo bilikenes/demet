@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { api } from "./api";
+import { Download, RefreshCw } from "lucide-react";
+import { api, getAppVersion } from "./api";
 import { HotkeyField } from "./HotkeyField";
 import type { MouseTrigger } from "./types";
-import { Card, Field, SegmentedControl, Select, Switch, useToast } from "./ui";
+import { Button, Card, Field, Progress, SegmentedControl, Select, Switch, useToast } from "./ui";
 import { useConfig } from "./useConfig";
 import type { Mode } from "./useTheme";
+import { updateLabel, type UpdateState } from "./updater";
 
 const MOUSE_OPTIONS: { value: MouseTrigger; label: string; description?: string }[] = [
   { value: "CtrlMiddleClick", label: "Ctrl + Orta fare tuşu", description: "Önerilen" },
@@ -14,14 +16,29 @@ const MOUSE_OPTIONS: { value: MouseTrigger; label: string; description?: string 
   { value: "Disabled", label: "Kapalı", description: "Yalnızca klavye" },
 ];
 
-export function SettingsView({ mode, onModeChange }: { mode: Mode; onModeChange: (mode: Mode) => void }) {
+interface UpdaterApi {
+  state: UpdateState;
+  checkNow: () => Promise<void>;
+  install: () => Promise<void>;
+}
+
+export function SettingsView({
+  mode, onModeChange, updater,
+}: { mode: Mode; onModeChange: (mode: Mode) => void; updater: UpdaterApi }) {
   const { config, update } = useConfig();
   const toast = useToast();
   const [startup, setStartup] = useState(false);
+  const [version, setVersion] = useState("");
 
   useEffect(() => {
     void api.isStartupEnabled().then(setStartup);
+    void getAppVersion().then(setVersion);
   }, []);
+
+  const { state } = updater;
+  const checking = state.kind === "checking" || state.kind === "downloading";
+  const statusText = updateLabel(state) ?? "Güncellemeler GitHub üzerinden indirilir ve imzası doğrulanarak kurulur.";
+  const versionText = version ? (/^\d/.test(version) ? ` v${version}` : ` ${version}`) : "";
 
   const toggleStartup = async (enable: boolean) => {
     const ok = await api.setStartupEnabled(enable);
@@ -109,6 +126,27 @@ export function SettingsView({ mode, onModeChange }: { mode: Mode; onModeChange:
             />
           </div>
         </div>
+      </Card>
+
+      <Card title="Güncellemeler">
+        <div className="ui-setting">
+          <div className="ui-setting-label">
+            Demet{versionText}
+            <small>{statusText}</small>
+          </div>
+          {state.kind === "available" ? (
+            <Button variant="filled" icon={<Download size={18} />} onClick={() => void updater.install()}>
+              {state.version} sürümünü kur
+            </Button>
+          ) : (
+            <Button icon={<RefreshCw size={18} />} disabled={checking} onClick={() => void updater.checkNow()}>
+              Güncellemeleri denetle
+            </Button>
+          )}
+        </div>
+        {state.kind === "downloading" && (
+          <Progress value={state.percent ?? 0} label="Güncelleme indiriliyor" />
+        )}
       </Card>
     </div>
   );

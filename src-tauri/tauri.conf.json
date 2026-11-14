@@ -2,8 +2,8 @@
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "Demet",
   "mainBinaryName": "Demet",
-  "version": "0.1.0",
-  "identifier": "com.demet.launcher",
+  "version": "../package.json",
+  "identifier": "io.github.bilikenes.demet",
   "build": {
     "frontendDist": "../dist",
     "devUrl": "http://localhost:5173",
@@ -23,16 +23,50 @@
         "visible": false
       }
     ],
-    "security": { "csp": null }
+    "security": {
+      "csp": null
+    }
   },
   "bundle": {
     "active": true,
-    "targets": ["nsis"],
+    "targets": [
+      "nsis"
+    ],
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
       "icons/128x128@2x.png",
       "icons/icon.ico"
-    ]
+    ],
+    "publisher": "Enes Bilik",
+    "copyright": "© 2026 Enes Bilik",
+    "category": "Utility",
+    "shortDescription": "Uygulama demetlerini tek kısayolla başlat",
+    "longDescription": "Demet, birlikte kullandığın uygulamaları, klasörleri ve web sitelerini bir demet altında toplar ve tek bir kısayolla sırayla açar.",
+    "homepage": "https://github.com/bilikenes/demet",
+    "windows": {
+      "nsis": {
+        "installMode": "currentUser",
+        "languages": [
+          "Turkish",
+          "English"
+        ],
+        "displayLanguageSelector": false,
+        "installerIcon": "icons/icon.ico"
+      }
+    },
+    "createUpdaterArtifacts": true
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDIxOTQwNkQ4MzM4QjBCRjEKUldUeEM0c3oyQWFVSVFiZ2pCZEhKYklPWi9acUhFRTNRdGU5V2pNLzZWQ0FCaHpGKy83eDFNMUoK",
+      "endpoints": [
+        "https://github.com/bilikenes/demet/releases/latest/download/latest.json"
+      ],
+      "windows": {
+        "installMode": "passive"
+      },
+      "requireSignedVersion": true
+    }
   }
 }
