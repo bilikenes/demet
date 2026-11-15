@@ -216,7 +216,7 @@ export function BundleView({ bundle, onDeleted }: { bundle: AppBundle; onDeleted
       >
         {bundle.items.length === 0 ? (
           <EmptyState
-            icon={<ListChecks size={26} />}
+            icon={<span className="app-welcome-mark is-sm" aria-hidden="true"><span className="app-welcome-symbol" /></span>}
             title="Bu demette henüz öğe yok"
             description="Uygulama, web adresi, klasör veya şu an açık olan pencereleri ekleyebilirsin."
             action={<Button icon={<Plus size={18} />} onClick={() => openEditor(null)}>Öğe ekle</Button>}

@@ -2,11 +2,33 @@
 
 .app-boot { min-height: 100vh; display: grid; place-items: center; }
 
+/* ---------- Pencere iskeleti: çubuk + sahne (arka plan ve kendi kayan içerik) ---------- */
+.app-root { height: 100vh; min-height: 0; overflow: hidden; display: flex; flex-direction: column; --titlebar-h: 0px; } /* ui-allow */
+.app-root.has-titlebar { --titlebar-h: var(--space-8); }
+/* Paneller hafif saydam: arkadaki hareketli zeminin etkisi az da olsa seçilsin. Modallar opak kalır. */
+.app-root { --panel-bg: color-mix(in srgb, var(--color-surface) 82%, transparent); }
+.app-stage { position: relative; flex: 1; min-height: 0; }
+.app-scroll { position: absolute; inset: 0; overflow-x: hidden; overflow-y: auto; z-index: 1; scrollbar-width: none; }
+.app-scroll::-webkit-scrollbar { display: none; width: 0; height: 0; }
+body:has(.ui-modal-backdrop) .app-scroll { overflow: hidden; }
+.app-scroll .ui-shell { min-height: 100%; }
+.app-scroll .ui-shell-side { max-height: calc(100vh - var(--titlebar-h) - var(--space-8)); }
+
+/* ---------- Pencere çubuğu: sayfadan ayrı, içerik altından kayar ---------- */
+.app-titlebar { position: relative; flex: none; height: var(--titlebar-h); z-index: calc(var(--z-modal) + 1); display: flex; justify-content: flex-end; background: var(--color-bg); user-select: none; transition: background var(--duration-slow); }
+.app-titlebar-controls { display: flex; height: 100%; }
+.app-titlebar-btn { width: var(--space-12); height: 100%; display: grid; place-items: center; border: 0; background: none; color: var(--color-text-muted); cursor: default; transition: background var(--duration-base) var(--ease-standard), color var(--duration-base) var(--ease-standard); }
+.app-titlebar-btn:hover { background: var(--color-border); color: var(--color-text); }
+.app-titlebar-btn.is-close:hover { background: var(--color-danger); color: var(--color-on-accent); }
+
 /* ---------- Yan menü ---------- */
-.app-brand { display: flex; align-items: center; gap: var(--space-3); padding: 0 var(--space-3) var(--space-4); }
-.app-brand > div:nth-child(2) { flex: 1; min-width: 0; }
-.app-brand-name { font-size: var(--text-lg); font-weight: var(--weight-bold); letter-spacing: var(--tracking-snug); }
-.app-brand-mark { width: var(--space-10); height: var(--space-10); flex: none; object-fit: contain; }
+/* Maymun kartsız ve arka plansız: videonun zemin rengi SVG filtresiyle (SidebarMonkey içinde) saydamlaştırılır. */
+.app-sidebar-monkey { position: relative; width: 240px; aspect-ratio: 16 / 9; margin-bottom: var(--space-3); } /* ui-allow */
+.app-sidebar-monkey video { display: block; width: 100%; height: 100%; object-fit: cover; clip-path: inset(2px); opacity: 0; transition: opacity var(--duration-base); } /* ui-allow: clip-path 2px, kenar pikselleri filtrede siyaha dönmesin */
+.app-sidebar-monkey video.is-ready { opacity: 1; }
+.app-sidebar-monkey.is-dark video { filter: url(#monkey-key-dark); }
+.app-sidebar-monkey.is-light video { filter: url(#monkey-key-light); }
+@media (max-width: 760px) { .app-sidebar-monkey { width: 100%; } } /* ui-allow */
 .app-sidebar-emoji { width: var(--space-5); text-align: center; font-size: var(--text-base); line-height: 1; }
 
 /* ---------- Ortak parçalar ---------- */
@@ -42,6 +64,8 @@
 html.is-overlay, html.is-overlay body { background: transparent; overflow: hidden; }
 .app-overlay { height: 100vh; padding: var(--space-2); }
 .app-overlay-card { height: 100%; display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-4); background: var(--color-popover); border: 1px solid var(--color-popover-edge); border-radius: var(--radius-xl); box-shadow: var(--shadow-lg); } /* ui-allow */
+/* Arama çubuğu kartın tüm genişliğini kaplasın; altındaki satırlarla aynı hizada bitsin. */
+.app-overlay-card .lg-input { width: 100%; max-width: none; height: calc(var(--space-10) + var(--space-1)); }
 .app-overlay-list { flex: 1; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: var(--space-1); }
 .app-overlay-row { display: flex; align-items: center; gap: var(--space-3); padding: var(--space-2) var(--space-3); border-radius: var(--radius-lg); cursor: pointer; }
 .app-overlay-row[aria-selected="true"] { background: var(--color-accent-soft); }
@@ -53,13 +77,15 @@ html.is-overlay, html.is-overlay body { background: transparent; overflow: hidde
 
 /* ---------- Genel düzeltmeler ---------- */
 /* Kaydırma çubuğu görünmez; sayfa yine fare tekerleği, dokunma ve klavye ile kayar. */
-html:not(.is-overlay) { scrollbar-width: none; }
+html:not(.is-overlay), html:not(.is-overlay) body { overflow: hidden; scrollbar-width: none; }
 html:not(.is-overlay)::-webkit-scrollbar { display: none; width: 0; height: 0; }
 /* Performans: ana içerikteki her cam denetim kaydırırken arka planı yeniden bulanıklaştırıp kare düşürüyordu. */
-.ui-shell-main .lg-glass { -webkit-backdrop-filter: none; backdrop-filter: none; }
+.ui-shell-main .lg-glass, .ui-shell-side .lg-glass { -webkit-backdrop-filter: none; backdrop-filter: none; }
+/* Yan menü de sağdaki paneller gibi düz yüzey: hepsi aynı, hareketli zeminin üstünde okunaklı. */
+.ui-shell-main .ui-card:not(.is-glass) { background: var(--panel-bg); }
+.ui-shell-side .ui-sidebar { background-color: var(--panel-bg); background-image: none; border: 1px solid var(--color-border); box-shadow: var(--shadow-sm); } /* ui-allow */
 .ui-shell-main .lg-switch-thumb { -webkit-backdrop-filter: none; backdrop-filter: none; }
 /* Pencere açıkken arkadaki sayfa kaymasın; kaydırma çubuğu yer değiştirmesin. */
-html:has(.ui-modal-backdrop):not(.is-overlay) { overflow: hidden; }
 
 /* Menü kartı tetikleyicinin altında açıldığı için glisse'in kart içindeki 3 nokta simgesi ikinci bir düğme gibi görünüyordu. */
 .lg-menu-glyph { display: none; }
@@ -156,13 +182,22 @@ section:first-child > .app-sp-title { margin-top: var(--space-2); }
 .app-welcome-body { margin: auto 0; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); width: 100%; }
 .app-welcome-mark { width: calc(var(--space-20) + var(--space-8)); height: calc(var(--space-20) + var(--space-8)); border-radius: var(--radius-2xl); display: grid; place-items: center; background: var(--color-accent); color: var(--color-on-accent); box-shadow: 0 var(--space-4) var(--space-12) color-mix(in srgb, var(--color-accent) 35%, transparent); }
 .app-welcome-symbol { display: block; width: calc(var(--space-16) + var(--space-8)); height: calc(var(--space-16) + var(--space-8)); background: currentColor; mask: url("/welcome-monkey.png") center / contain no-repeat; }
+/* Küçük sürüm: boş demet durumunda (EmptyState'in kendi ikon karosu şeffaflaştırılır). */
+.app-welcome-mark.is-sm { width: var(--space-20); height: var(--space-20); border-radius: var(--radius-xl); box-shadow: 0 var(--space-2) var(--space-6) color-mix(in srgb, var(--color-accent) 30%, transparent); }
+.app-welcome-mark.is-sm .app-welcome-symbol { width: var(--space-16); height: var(--space-16); }
+.ui-empty-icon:has(.app-welcome-mark) { width: auto; height: auto; background: none; }
 .app-welcome-title { margin: 0; font-size: var(--text-3xl); font-weight: var(--weight-bold); letter-spacing: var(--tracking-tight); color: var(--color-text); }
 .app-welcome-text { margin: 0; max-width: 520px; color: var(--color-text-muted); line-height: var(--leading-normal); } /* ui-allow */
 .app-welcome-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); width: 100%; max-width: 760px; margin-top: var(--space-6); } /* ui-allow */
-.app-welcome-option { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: var(--space-3); padding: var(--space-6) var(--space-5); text-align: center; font: inherit; color: var(--color-text); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); cursor: pointer; transition: border-color var(--duration-base) var(--ease-standard), transform var(--duration-base) var(--ease-standard); } /* ui-allow */
+.app-welcome-option { display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: var(--space-3); padding: var(--space-6) var(--space-5); text-align: center; font: inherit; color: var(--color-text); background: var(--panel-bg); border: 1px solid var(--color-border); border-radius: var(--radius-xl); cursor: pointer; transition: border-color var(--duration-base) var(--ease-standard), transform var(--duration-base) var(--ease-standard); } /* ui-allow */
 .app-welcome-option:hover { border-color: var(--color-text-subtle); transform: translateY(calc(var(--space-1) * -0.5)); }
 .app-welcome-option:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; } /* ui-allow */
 .app-welcome-option-icon { display: grid; place-items: center; width: var(--space-12); height: var(--space-12); border-radius: var(--radius-full); background: var(--color-surface-raised); color: var(--color-text-muted); }
 .app-welcome-option-title { font-weight: var(--weight-semibold); }
 .app-welcome-option-text { font-size: var(--text-sm); color: var(--color-text-muted); line-height: var(--leading-normal); }
 .app-welcome-tip { margin: 0; font-size: var(--text-sm); color: var(--color-text-subtle); }
+
+
+/* ---------- Hareketli arka plan ---------- */
+.app-bgfx { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.app-bgfx-art { position: absolute; }

@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { AppWindow, Plus, Settings } from "lucide-react";
 import { api, inTauri, onBundleResult, onBundleStarted, setWindowTheme } from "./api";
 import { AppPickerModal } from "./AppPickerModal";
+import { AnimatedBackground } from "./background/AnimatedBackground";
 import { BundleGlyph } from "./BundleGlyph";
 import { BundleView } from "./BundleView";
+import { SidebarMonkey } from "./SidebarMonkey";
+import { TitleBar } from "./TitleBar";
 import { SettingsView } from "./SettingsView";
 import { WelcomeView } from "./WelcomeView";
 import type { AppBundle, BundleEvent, BundleItem } from "./types";
@@ -126,62 +129,61 @@ function Shell() {
   const solo = view === WELCOME && config.bundles.length === 0;
 
   return (
-    <div className="ui-page">
-      <div className="ui-glow" />
-      <div className={`ui-shell${solo ? " is-solo" : ""}`}>
-        {!solo && <aside className="ui-shell-side">
-          <div className="app-brand">
-            <img className="app-brand-mark" src="/logo.png" alt="" aria-hidden="true" />
-            <div>
-              <div className="app-brand-name">Demet</div>
-              <div className="ui-muted">Uygulama demeti başlatıcı</div>
-            </div>
+    <div className={`ui-page app-root${inTauri ? " has-titlebar" : ""}`}>
+      {inTauri && <TitleBar />}
+      <div className="app-stage">
+        <AnimatedBackground mode={mode} />
+        <div className="app-scroll">
+          <div className={`ui-shell${solo ? " is-solo" : ""}`}>
+            {!solo && <aside className="ui-shell-side">
+              <SidebarMonkey mode={mode} />
+              <Sidebar items={items} active={view} onSelect={onSelect} />
+            </aside>}
+
+            <main className="ui-shell-main">
+              {warnings.length > 0 && (
+                <div className="app-warnings">
+                  <Alert tone="danger" title="Bazı kısayollar kaydedilemedi">
+                    {warnings.join(" ")}
+                  </Alert>
+                </div>
+              )}
+
+              {updateReady && !(updateDismissed && updateState.kind === "available") && (
+                <div className="app-warnings">
+                  <Alert
+                    tone="accent"
+                    title={updateState.kind === "available" ? `Yeni sürüm hazır: ${updateState.version}` : "Güncelleme indiriliyor"}
+                    onClose={updateState.kind === "available" ? () => setUpdateDismissed(true) : undefined}
+                    action={
+                      updateState.kind === "available" ? (
+                        <Button onClick={() => void updater.install()}>Şimdi güncelle</Button>
+                      ) : undefined
+                    }
+                  >
+                    {updateState.kind === "downloading" ? (
+                      <Progress value={updateState.percent ?? 0} label="Güncelleme indiriliyor" />
+                    ) : (
+                      "Kurulumdan sonra Demet kendiliğinden yeniden açılır."
+                    )}
+                  </Alert>
+                </div>
+              )}
+
+              {view === SETTINGS ? (
+                <SettingsView mode={mode} onModeChange={setMode} updater={updater} />
+              ) : selected ? (
+                <BundleView key={selected.id} bundle={selected} onDeleted={() => setView(config.bundles.find((b) => b.id !== selected.id)?.id ?? WELCOME)} />
+              ) : (
+                <WelcomeView
+                  onSnapshot={() => setSnapshotOpen(true)}
+                  onCreateEmpty={() => createBundle()}
+                  onPickInstalled={() => setInstalledOpen(true)}
+                />
+              )}
+            </main>
           </div>
-          <Sidebar items={items} active={view} onSelect={onSelect} />
-        </aside>}
-
-        <main className="ui-shell-main">
-          {warnings.length > 0 && (
-            <div className="app-warnings">
-              <Alert tone="danger" title="Bazı kısayollar kaydedilemedi">
-                {warnings.join(" ")}
-              </Alert>
-            </div>
-          )}
-
-          {updateReady && !(updateDismissed && updateState.kind === "available") && (
-            <div className="app-warnings">
-              <Alert
-                tone="accent"
-                title={updateState.kind === "available" ? `Yeni sürüm hazır: ${updateState.version}` : "Güncelleme indiriliyor"}
-                onClose={updateState.kind === "available" ? () => setUpdateDismissed(true) : undefined}
-                action={
-                  updateState.kind === "available" ? (
-                    <Button onClick={() => void updater.install()}>Şimdi güncelle</Button>
-                  ) : undefined
-                }
-              >
-                {updateState.kind === "downloading" ? (
-                  <Progress value={updateState.percent ?? 0} label="Güncelleme indiriliyor" />
-                ) : (
-                  "Kurulumdan sonra Demet kendiliğinden yeniden açılır."
-                )}
-              </Alert>
-            </div>
-          )}
-
-          {view === SETTINGS ? (
-            <SettingsView mode={mode} onModeChange={setMode} updater={updater} />
-          ) : selected ? (
-            <BundleView key={selected.id} bundle={selected} onDeleted={() => setView(config.bundles.find((b) => b.id !== selected.id)?.id ?? WELCOME)} />
-          ) : (
-            <WelcomeView
-              onSnapshot={() => setSnapshotOpen(true)}
-              onCreateEmpty={() => createBundle()}
-              onPickInstalled={() => setInstalledOpen(true)}
-            />
-          )}
-        </main>
+        </div>
       </div>
 
       <AppPickerModal
