@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { Camera, Plus, Rocket, Settings } from "lucide-react";
+import { AppWindow, Plus, Rocket, Settings } from "lucide-react";
 import { api, inTauri, onBundleResult, onBundleStarted, setWindowTheme } from "./api";
 import { AppPickerModal } from "./AppPickerModal";
 import { BundleGlyph } from "./BundleGlyph";
 import { BundleView } from "./BundleView";
 import { SettingsView } from "./SettingsView";
-import type { AppBundle, BundleEvent } from "./types";
+import { WelcomeView } from "./WelcomeView";
+import type { AppBundle, BundleEvent, BundleItem } from "./types";
 import { newBundle, newItem } from "./types";
 import {
-  Alert, Badge, Button, Card, EmptyState, Progress, Sidebar, Spinner, ToastProvider, useToast,
+  Alert, Badge, Button, Progress, Sidebar, Spinner, ToastProvider, useToast,
   type SidebarEntry,
 } from "./ui";
 import { ConfigProvider, useConfig } from "./useConfig";
@@ -28,6 +29,8 @@ export default function App() {
 const NEW_BUNDLE = "__new";
 const SNAPSHOT = "__snapshot";
 const SETTINGS = "settings";
+/** Hiç demet yokken gösterilen karşılama ekranı. */
+const WELCOME = "__welcome";
 
 function summarize(e: BundleEvent): { tone: "success" | "danger" | "info"; title: string; text: string } {
   if (e.kind === "close") {
@@ -51,7 +54,8 @@ function Shell() {
   const { mode, setMode } = useTheme();
   const toast = useToast();
   const { config, warnings, update } = useConfig();
-  const [view, setView] = useState<string>(() => config.bundles[0]?.id ?? SETTINGS);
+  const [view, setView] = useState<string>(() => config.bundles[0]?.id ?? WELCOME);
+  const [installedOpen, setInstalledOpen] = useState(false);
   const [snapshotOpen, setSnapshotOpen] = useState(false);
   const updater = useUpdater(inTauri);
   const [updateDismissed, setUpdateDismissed] = useState(false);
@@ -77,15 +81,16 @@ function Shell() {
   const selected: AppBundle | undefined = config.bundles.find((b) => b.id === view);
   // Seçili demet silinmişse ya da yoksa güvenli bir görünüme dön.
   useEffect(() => {
-    if (view !== SETTINGS && !selected) setView(config.bundles[0]?.id ?? SETTINGS);
+    if (view !== SETTINGS && !selected) setView(config.bundles[0]?.id ?? WELCOME);
   }, [view, selected, config.bundles]);
 
-  const createBundle = () => {
+  const createBundle = (items: BundleItem[] = []) => {
     const number = config.bundles.length + 1;
     const bundle = newBundle({
       name: `Yeni Demet ${number}`,
       description: "Bu demet için açıklama...",
       hotkey: number <= 9 ? `Ctrl+Alt+Shift+${number}` : "",
+      items,
     });
     update((c) => { c.bundles.push(bundle); });
     setView(bundle.id);
@@ -101,7 +106,7 @@ function Shell() {
       badge: <Badge tone="neutral">{b.items.filter((i) => i.enabled).length}</Badge>,
     })),
     { value: NEW_BUNDLE, label: "Yeni demet", icon: <Plus size={18} /> },
-    { value: SNAPSHOT, label: "Açık uygulamalardan", icon: <Camera size={18} /> },
+    { value: SNAPSHOT, label: "Açık uygulamalardan", icon: <AppWindow size={18} /> },
     { section: "Uygulama" },
     {
       value: SETTINGS,
@@ -117,11 +122,14 @@ function Shell() {
     else setView(value);
   };
 
+  // Hiç demet yokken yan menü gizlenir; karşılama ekranı tek başına ortalanır.
+  const solo = view === WELCOME && config.bundles.length === 0;
+
   return (
     <div className="ui-page">
       <div className="ui-glow" />
-      <div className="ui-shell">
-        <aside className="ui-shell-side">
+      <div className={`ui-shell${solo ? " is-solo" : ""}`}>
+        {!solo && <aside className="ui-shell-side">
           <div className="app-brand">
             <span className="app-brand-mark" aria-hidden="true"><Rocket size={18} /></span>
             <div>
@@ -130,7 +138,7 @@ function Shell() {
             </div>
           </div>
           <Sidebar items={items} active={view} onSelect={onSelect} />
-        </aside>
+        </aside>}
 
         <main className="ui-shell-main">
           {warnings.length > 0 && (
@@ -165,19 +173,31 @@ function Shell() {
           {view === SETTINGS ? (
             <SettingsView mode={mode} onModeChange={setMode} updater={updater} />
           ) : selected ? (
-            <BundleView key={selected.id} bundle={selected} onDeleted={() => setView(config.bundles.find((b) => b.id !== selected.id)?.id ?? SETTINGS)} />
+            <BundleView key={selected.id} bundle={selected} onDeleted={() => setView(config.bundles.find((b) => b.id !== selected.id)?.id ?? WELCOME)} />
           ) : (
-            <Card>
-              <EmptyState
-                icon={<Rocket size={26} />}
-                title="Henüz demet yok"
-                description="Demet, tek kısayolla birlikte açılan uygulama, klasör ve web adreslerinin listesidir."
-                action={<Button variant="filled" icon={<Plus size={18} />} onClick={createBundle}>İlk demetini oluştur</Button>}
-              />
-            </Card>
+            <WelcomeView
+              onSnapshot={() => setSnapshotOpen(true)}
+              onCreateEmpty={() => createBundle()}
+              onPickInstalled={() => setInstalledOpen(true)}
+            />
           )}
         </main>
       </div>
+
+      <AppPickerModal
+        mode="pickInstalled"
+        open={installedOpen}
+        onClose={() => setInstalledOpen(false)}
+        onConfirm={(apps) => {
+          setInstalledOpen(false);
+          createBundle(apps.map((app) => newItem({
+            name: app.name,
+            target: app.executablePath,
+            arguments: app.arguments,
+            workingDirectory: app.workingDirectory,
+          })));
+        }}
+      />
 
       <AppPickerModal
         mode="snapshot"

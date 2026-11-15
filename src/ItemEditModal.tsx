@@ -44,7 +44,7 @@ export function ItemEditModal({
     const start = item ? { ...item } : newItem();
     setDraft(start);
     setDelayText(String(start.delayMs));
-    setAdvanced(Boolean(start.workingDirectory));
+    setAdvanced(Boolean(start.workingDirectory) || start.delayMs !== 250);
     setError("");
   }, [open, item]);
 
@@ -144,8 +144,8 @@ export function ItemEditModal({
             ]}
           />
 
-          <Field label="Ad" hint="Boş bırakırsan yoldan üretilir.">
-            {(id) => <Input id={id} value={draft.name} onValueChange={(name) => set({ name })} />}
+          <Field label="Ad">
+            {(id) => <Input id={id} value={draft.name} placeholder="Boşsa yoldan üretilir" onValueChange={(name) => set({ name })} />}
           </Field>
 
           <Field label={TARGET_LABEL[draft.itemType]} error={error}>
@@ -170,68 +170,68 @@ export function ItemEditModal({
             <>
               <div>
                 <Button icon={<ListChecks size={16} />} onClick={() => setPickerOpen(true)}>
-                  {editing ? "Başlat menüsünden seç" : "Başlat menüsünden bir veya birkaç uygulama seç"}
+                  Başlat menüsünden seç
                 </Button>
               </div>
 
-              <Checkbox
-                label="Zaten açıksa yeni pencere açma, mevcut pencereyi öne getir"
-                checked={draft.duplicateBehavior === "FocusOrSkip"}
-                onCheckedChange={(on) => set({ duplicateBehavior: on ? "FocusOrSkip" : "AlwaysLaunch" })}
-              />
-
-              <Field
-                label="Birlikte açılacak dosya veya klasör (isteğe bağlı)"
-                hint="Uygulamayı belirli bir şeyle açmak istersen seç: VS Code'u bir proje klasörüyle, Word'ü bir belgeyle gibi. Boş bırakırsan uygulama normal, boş açılır."
-              >
+              <Field label="Birlikte açılacak dosya veya klasör">
                 {(id) => (
-                  <div className="ui-stack is-tight">
-                    <Input
-                      id={id}
-                      value={draft.arguments}
-                      placeholder={String.raw`Örn: "C:\Projeler\site"`}
-                      onValueChange={(args) => set({ arguments: args })}
-                    />
-                    <div className="ui-row is-tight">
-                      <Button icon={<FolderPlus size={16} />} onClick={() => void addArgumentPath("folder")}>Klasör seç</Button>
-                      <Button icon={<FilePlus size={16} />} onClick={() => void addArgumentPath("file")}>Dosya seç</Button>
+                  <div className="ui-row is-tight">
+                    <div className="ui-grow">
+                      <Input
+                        id={id}
+                        value={draft.arguments}
+                        placeholder="İsteğe bağlı"
+                        onValueChange={(args) => set({ arguments: args })}
+                      />
                     </div>
+                    <Button icon={<FolderPlus size={16} />} aria-label="Klasör seç" onClick={() => void addArgumentPath("folder")} />
+                    <Button icon={<FilePlus size={16} />} aria-label="Dosya seç" onClick={() => void addArgumentPath("file")} />
                   </div>
                 )}
               </Field>
 
-              <button
-                type="button"
-                className="app-disclosure"
-                aria-expanded={advanced}
-                onClick={() => setAdvanced((v) => !v)}
-              >
-                <ChevronDown size={16} />
-                Gelişmiş ayarlar
-              </button>
+              <Checkbox
+                label="Zaten açıksa mevcut pencereyi öne getir"
+                checked={draft.duplicateBehavior === "FocusOrSkip"}
+                onCheckedChange={(on) => set({ duplicateBehavior: on ? "FocusOrSkip" : "AlwaysLaunch" })}
+              />
+            </>
+          )}
 
-              {advanced && (
-                <Field label="Çalışma klasörü" hint="Nadiren gerekir. Boş bırakırsan uygulamanın kendi klasörü kullanılır.">
+          <button
+            type="button"
+            className="app-disclosure"
+            aria-expanded={advanced}
+            onClick={() => setAdvanced((v) => !v)}
+          >
+            <ChevronDown size={16} />
+            Gelişmiş ayarlar
+          </button>
+
+          {advanced && (
+            <>
+              {isApp && (
+                <Field label="Çalışma klasörü">
                   {(id) => (
                     <div className="ui-row is-tight">
                       <div className="ui-grow">
-                        <Input id={id} value={draft.workingDirectory} onValueChange={(workingDirectory) => set({ workingDirectory })} />
+                        <Input id={id} value={draft.workingDirectory} placeholder="Boşsa uygulamanın klasörü" onValueChange={(workingDirectory) => set({ workingDirectory })} />
                       </div>
                       <Button icon={<FolderOpen size={16} />} aria-label="Çalışma klasörüne gözat" onClick={() => void browseWorkingDir()} />
                     </div>
                   )}
                 </Field>
               )}
+              <Field label="Sonraki öğeden önce bekleme (ms)">
+                {(id) => (
+                  <div className="ui-w-sm">
+                    <Input id={id} inputMode="numeric" value={delayText} onValueChange={setDelayText} />
+                  </div>
+                )}
+              </Field>
             </>
           )}
-
-          <Field label="Sonraki öğeden önce bekleme (ms)" hint="0 ile 15000 arası.">
-            {(id) => (
-              <div className="ui-w-sm">
-                <Input id={id} inputMode="numeric" value={delayText} onValueChange={setDelayText} />
-              </div>
-            )}
-          </Field>
         </div>
       </AppModal>
 

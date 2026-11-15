@@ -2,7 +2,7 @@
    Uses ONLY tokens. Pages compose these instead of writing their own layout CSS. */
 
 /* ---------- Page ---------- */
-.ui-page { min-height: 100vh; position: relative; overflow: hidden; background: var(--color-bg); color: var(--color-text); transition: background var(--duration-slow), color var(--duration-slow); }
+.ui-page { min-height: 100vh; position: relative; overflow: clip; background: var(--color-bg); color: var(--color-text); transition: background var(--duration-slow), color var(--duration-slow); }
 
 /* Soft glow behind glass so it has something to refract. Place once per page as the first child. */
 .ui-glow { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
@@ -16,7 +16,7 @@
 
 /* ---------- Desktop app shell: sidebar + content ---------- */
 .ui-shell { position: relative; z-index: 1; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--space-4); min-height: 100vh; padding: var(--space-4); }
-.ui-shell-side { position: sticky; top: var(--space-4); align-self: start; }
+.ui-shell-side { position: sticky; top: var(--space-4); align-self: start; max-height: calc(100vh - var(--space-8)); overflow-y: auto; }
 .ui-shell-main { min-width: 0; padding: var(--space-4) var(--space-4) var(--space-16); }
 @media (max-width: 760px) {
   .ui-shell { grid-template-columns: 1fr; }
