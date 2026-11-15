@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { AppWindow, Plus, Rocket, Settings } from "lucide-react";
+import { AppWindow, Plus, Settings } from "lucide-react";
 import { api, inTauri, onBundleResult, onBundleStarted, setWindowTheme } from "./api";
 import { AppPickerModal } from "./AppPickerModal";
 import { BundleGlyph } from "./BundleGlyph";
@@ -131,7 +131,7 @@ function Shell() {
       <div className={`ui-shell${solo ? " is-solo" : ""}`}>
         {!solo && <aside className="ui-shell-side">
           <div className="app-brand">
-            <span className="app-brand-mark" aria-hidden="true"><Rocket size={18} /></span>
+            <img className="app-brand-mark" src="/logo.png" alt="" aria-hidden="true" />
             <div>
               <div className="app-brand-name">Demet</div>
               <div className="ui-muted">Uygulama demeti başlatıcı</div>

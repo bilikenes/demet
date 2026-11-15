@@ -6,7 +6,7 @@
 .app-brand { display: flex; align-items: center; gap: var(--space-3); padding: 0 var(--space-3) var(--space-4); }
 .app-brand > div:nth-child(2) { flex: 1; min-width: 0; }
 .app-brand-name { font-size: var(--text-lg); font-weight: var(--weight-bold); letter-spacing: var(--tracking-snug); }
-.app-brand-mark { width: var(--space-10); height: var(--space-10); border-radius: var(--radius-md); display: grid; place-items: center; flex: none; background: var(--color-accent); color: var(--color-on-accent); }
+.app-brand-mark { width: var(--space-10); height: var(--space-10); flex: none; object-fit: contain; }
 .app-sidebar-emoji { width: var(--space-5); text-align: center; font-size: var(--text-base); line-height: 1; }
 
 /* ---------- Ortak parçalar ---------- */

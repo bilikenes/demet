@@ -1,0 +1,48 @@
+{
+  "product": "Demet",
+  "selectedCharacter": "A / Demetçi Maymun",
+  "stage": "Renk karşılaştırması — paketleme için kullanıcı rengi bekleniyor",
+  "method": "Yerleşik image_gen; onaylanan maymun kaynağı üzerinde yalnızca zemin rengi düzenlemesi",
+  "originalMaster": "../round-03-animals/a.png",
+  "colors": [
+    {
+      "id": "01-turquoise",
+      "name": "Turkuaz",
+      "hex": "#0AAF94",
+      "note": "Mevcut sürüm."
+    },
+    {
+      "id": "02-amber",
+      "name": "Amber",
+      "hex": "#F5A524",
+      "note": "Sıcak ve enerjik; uygulamanın amber arayüzüyle uyumlu."
+    },
+    {
+      "id": "03-blue",
+      "name": "Mavi",
+      "hex": "#5078E8",
+      "note": "Serin ve belirgin; fildişi yüz ve çiçekler öne çıkıyor."
+    },
+    {
+      "id": "04-coral",
+      "name": "Mercan",
+      "hex": "#EE6B4D",
+      "note": "Canlı ve sıcak; daha neşeli bir karakter."
+    }
+  ],
+  "prompts": [
+    {
+      "id": "02-amber",
+      "prompt": "Perform a PRECISE BACKGROUND-COLOR-ONLY EDIT on the attached APPROVED Demet monkey application icon. This is not a new illustration.\nChange the jade-turquoise tile background to a single perfectly flat solid #F5A524 Amber color. Change ALL turquoise background areas consistently, including the enclosed negative spaces between fingers and flower stems, gaps between flowers and leaves, around the tail and between the limbs. The subject does not receive any color tint.\nABSOLUTE INVARIANTS: Preserve the EXACT approved white-faced capuchin monkey, its seated pose, head angle, eyes, facial expression, two hands, fingers, two feet, curved tail, original fur hatching, ALL fine black ink linework and antique ivory highlights. Preserve the exact flower bouquet with its three blooms, leaf shapes, stem positions, ribbon and natural hand grip. Preserve the precise size, framing, layout and placement of every subject. No redraw, no redesign, no geometry shift, no extra or missing details, no mirroring. The animal, bouquet and ribbon stay exclusively dark ink #15120F and ivory #F8F3E7; only the background hue changes.\nKeep the original full-bleed square resolution, at least 1024x1024. Keep exactly the same rounded-square tile shape and generous corner radius. Preserve the outer black corner area as it is for later alpha masking. No frames or added border. Background must be UNIFORMLY #F5A524, with no gradient, no vignette, no grain, no texture or lighting. Do not recolor the whole artwork. Do not alter ivory highlights. No text, labels, watermark, shadows, glow or sparkle. Deliver ONE square standalone edited icon only."
+    },
+    {
+      "id": "03-blue",
+      "prompt": "Perform a PRECISE BACKGROUND-COLOR-ONLY EDIT on the attached APPROVED Demet monkey application icon. This is not a new illustration.\nChange the jade-turquoise tile background to a single perfectly flat solid #5078E8 Mavi color. Change ALL turquoise background areas consistently, including the enclosed negative spaces between fingers and flower stems, gaps between flowers and leaves, around the tail and between the limbs. The subject does not receive any color tint.\nABSOLUTE INVARIANTS: Preserve the EXACT approved white-faced capuchin monkey, its seated pose, head angle, eyes, facial expression, two hands, fingers, two feet, curved tail, original fur hatching, ALL fine black ink linework and antique ivory highlights. Preserve the exact flower bouquet with its three blooms, leaf shapes, stem positions, ribbon and natural hand grip. Preserve the precise size, framing, layout and placement of every subject. No redraw, no redesign, no geometry shift, no extra or missing details, no mirroring. The animal, bouquet and ribbon stay exclusively dark ink #15120F and ivory #F8F3E7; only the background hue changes.\nKeep the original full-bleed square resolution, at least 1024x1024. Keep exactly the same rounded-square tile shape and generous corner radius. Preserve the outer black corner area as it is for later alpha masking. No frames or added border. Background must be UNIFORMLY #5078E8, with no gradient, no vignette, no grain, no texture or lighting. Do not recolor the whole artwork. Do not alter ivory highlights. No text, labels, watermark, shadows, glow or sparkle. Deliver ONE square standalone edited icon only."
+    },
+    {
+      "id": "04-coral",
+      "prompt": "Perform a PRECISE BACKGROUND-COLOR-ONLY EDIT on the attached APPROVED Demet monkey application icon. This is not a new illustration.\nChange the jade-turquoise tile background to a single perfectly flat solid #EE6B4D Mercan color. Change ALL turquoise background areas consistently, including the enclosed negative spaces between fingers and flower stems, gaps between flowers and leaves, around the tail and between the limbs. The subject does not receive any color tint.\nABSOLUTE INVARIANTS: Preserve the EXACT approved white-faced capuchin monkey, its seated pose, head angle, eyes, facial expression, two hands, fingers, two feet, curved tail, original fur hatching, ALL fine black ink linework and antique ivory highlights. Preserve the exact flower bouquet with its three blooms, leaf shapes, stem positions, ribbon and natural hand grip. Preserve the precise size, framing, layout and placement of every subject. No redraw, no redesign, no geometry shift, no extra or missing details, no mirroring. The animal, bouquet and ribbon stay exclusively dark ink #15120F and ivory #F8F3E7; only the background hue changes.\nKeep the original full-bleed square resolution, at least 1024x1024. Keep exactly the same rounded-square tile shape and generous corner radius. Preserve the outer black corner area as it is for later alpha masking. No frames or added border. Background must be UNIFORMLY #EE6B4D, with no gradient, no vignette, no grain, no texture or lighting. Do not recolor the whole artwork. Do not alter ivory highlights. No text, labels, watermark, shadows, glow or sparkle. Deliver ONE square standalone edited icon only."
+    }
+  ],
+  "note": "Üç düzenleme ayrı yüksek çözünürlüklü PNG olarak korundu. Turkuaz kaynak dosyanın birebir kopyasıdır. Üretim paketi renk seçiminden sonra hazırlanacak."
+}

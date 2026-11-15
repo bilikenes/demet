@@ -1,0 +1,93 @@
+{
+  "product": "Demet",
+  "stage": "Yeni hayvan karakterleri / karşılaştırma turu",
+  "method": "built-in image_gen; üç bağımsız yüksek çözünürlüklü master",
+  "palette": {
+    "background": "#0AAF94",
+    "foreground": [
+      "#15120F",
+      "#F8F3E7"
+    ]
+  },
+  "brief": "Kuşun yerine çiçek demeti tutan maymun ve iki farklı hayvan tasarla; toplam üç logo.",
+  "recommended": "a",
+  "exploration": {
+    "rubric": "Distinctiveness×3 + semantic link×2 + cohesion×3 + engraving×2 + downscale×2 + family×2; all criteria rated 1–5",
+    "seeds": [
+      {
+        "name": "Kapuçin maymunu / tek elde demet",
+        "score": 67,
+        "selected": true
+      },
+      {
+        "name": "Sincap / göğüste toplanan demet",
+        "score": 66,
+        "selected": true
+      },
+      {
+        "name": "Su samuru / kucaklanan demet",
+        "score": 65,
+        "selected": true
+      },
+      {
+        "name": "Rakun / iki elde demet",
+        "score": 59
+      },
+      {
+        "name": "Tilki / patiye yaslanan demet",
+        "score": 58
+      },
+      {
+        "name": "Tavşan / ön patilerde demet",
+        "score": 57
+      },
+      {
+        "name": "Kunduz / geniş kuyruk önünde demet",
+        "score": 60
+      },
+      {
+        "name": "Lemur / halkalı kuyrukla çevrili demet",
+        "score": 61
+      },
+      {
+        "name": "Kirpi / göğse yakın küçük demet",
+        "score": 56
+      }
+    ]
+  },
+  "concepts": [
+    {
+      "id": "a",
+      "name": "Demetçi Maymun",
+      "animal": "Beyaz yüzlü kapuçin maymunu",
+      "rationale": "Becerikli elleri, farklı araçları bir araya getiren Demet fikrini somutlaştırıyor.",
+      "difference": "Asimetrik oturuş, kıvrılan ince kuyruk, tek elde sağa uzanan demet.",
+      "master": "a.png",
+      "prompt": "Generate ONE original high-resolution square application icon, at least 1024x1024, as a standalone image. Follow the illustrated family DNA of the approved references: vivid flat rounded-square tile and precise black-ink / ivory nineteenth-century copperplate engraving.\nINPUT ROLES: image 1 (bird with bouquet) is a reference for the EXISTING Demet palette, flower bouquet and engraving quality only; REPLACE the bird completely with the specified animal. Image 2 (chameleon on folder) is a technique/style reference only: do not copy its animal, folder, composition or yellow background.\nAll three new animal directions use the SAME vivid jade-turquoise tile #0AAF94 so the species and silhouette can be compared fairly. The tile is full-bleed, has consistent generous 26% rounded corners, and a completely flat color with no vignette or texture. Leave comfortable internal margins. No outside mat or decorative frame.\n\nConcept title: Demetçi Maymun.\nApplication meaning: Demet groups apps, folders and websites and starts the whole bundle with one shortcut.\nCreative rationale: A dexterous capuchin carefully brings many stems into one grip, like the app gathers many tools into one useful working set.\nMain engraved subjects: One adult white-faced capuchin monkey, full body, carrying the established small tied flower bouquet in ONE hand.\nIntegrated composition: A seated three-quarter view capuchin, body placed slightly left of center, head turned gently right toward the bouquet. Clearly recognizable adult capuchin anatomy: ivory oval facial mask, dark close-set realistic eyes, small rounded ears, short natural muzzle, anatomically correct slim shoulders, long arms, compact bent legs. A long thin prehensile tail curls in one clean broad C at lower-left and remains comfortably inside the tile. The RIGHT hand visibly wraps around the bouquet's gathered stems at chest height, thumb opposed to fingers, carrying the small bouquet outward to the upper-right. Flower heads fan beside and slightly below the face without covering it. Left hand rests naturally on a bent knee, two folded feet at lower center, no extra limbs. Closed relaxed mouth, calm curious expression without a human grin. Ivory face and chest form clear light masses against finely directional fur engraving. Bouquet cut stems point down toward lower center, flower heads point right/up; no floating flowers. Tail, body and bouquet form one compact triangular silhouette.\n\nA single powerful silhouette with naturally varying fine pen-and-ink lines and crosshatching following form and surface curvature. Dark ink #15120F and antique ivory #F8F3E7 paper highlights only in the animal AND every part of the bouquet. Sharp engraved edges, subtle organic print character, distinct depth, intentional high/low detail zones, broad light ivory areas. Anatomically credible adult animal, realistic eyes and muzzle, expressive through pose, never a cartoon mascot. Flower petals, centers, stems, leaves and ribbon must ALL be black and ivory; no green foliage or colored petals.\nThe bouquet and animal must physically interlock via the SPECIFIED grip with clear fingers/paws in front of and behind stems. Exactly ONE animal and ONE tied flower bouquet, no bird, branches, scenery or other props.\nThe bouquet uses the established three flowers: one 7–8-petaled cosmos-like flower, one smaller five-petaled wild rose and one partly open tulip; two restrained leaves and one small plain ivory ribbon tying the stems. Flower heads must be bold and readable, not tiny decoration. Entire figure and bouquet fit comfortably inside the tile, no cropped ears, tail, feet or petals.\nVery readable overall at 32px app-icon size; silhouette takes approximately 76–80% of tile dimensions with generous margins. No icon label or text. No generic flattened vector style, cartoon contours, 3D rendering, metallic sheen, gradient, glow, star particles, UI glyphs, floating arrows, ground shadow, sticker outline or watermark. Art should feel conceived as a timeless engraved print, designed for this exact rounded-square shape.\nCritically important: use the APPROVED REFERENCES FOR ART STYLE, PALETTE AND FLOWER CONTINUITY ONLY. Produce the specified new original animal composition."
+    },
+    {
+      "id": "b",
+      "name": "Toplayıcı Sincap",
+      "animal": "Avrasya kızıl sincabı",
+      "rationale": "Toplayıcı doğası, ihtiyaç duyulan araçları hazır bir demette biriktirmeyi anlatıyor.",
+      "difference": "Dik profil, büyük kabarık S kuyruk, iki ön patide göğse yakın demet.",
+      "master": "b.png",
+      "prompt": "Generate ONE original high-resolution square application icon, at least 1024x1024, as a standalone image. Follow the illustrated family DNA of the approved references: vivid flat rounded-square tile and precise black-ink / ivory nineteenth-century copperplate engraving.\nINPUT ROLES: image 1 (bird with bouquet) is a reference for the EXISTING Demet palette, flower bouquet and engraving quality only; REPLACE the bird completely with the specified animal. Image 2 (chameleon on folder) is a technique/style reference only: do not copy its animal, folder, composition or yellow background.\nAll three new animal directions use the SAME vivid jade-turquoise tile #0AAF94 so the species and silhouette can be compared fairly. The tile is full-bleed, has consistent generous 26% rounded corners, and a completely flat color with no vignette or texture. Leave comfortable internal margins. No outside mat or decorative frame.\n\nConcept title: Toplayıcı Sincap.\nApplication meaning: Demet collects the user's regular apps, folders and websites into a ready-to-launch bundle.\nCreative rationale: A natural gatherer collects a useful bouquet with its paws, just as Demet keeps the user's tools together and ready.\nMain engraved subjects: One Eurasian red squirrel, rendered EXCLUSIVELY in black ink and ivory (no red fur), full body, holding the established flower bouquet in both front paws.\nIntegrated composition: An upright right-facing side-profile squirrel with delicately tufted ears, realistic small black eye, pointed natural muzzle and compact ivory belly. Its enormous fluffy tail sweeps up BEHIND the body on the LEFT in a confident broad S, its tip curling inward above the back, with varied fine directional fur engraving and broad ivory highlights. The hind feet sit together naturally at lower center; exactly two forepaws gather and visibly clasp the bouquet stems just in front of the chest, one paw above the other, normal tiny toes, no human hands. Flower heads rise on a short diagonal into the upper-right space beside the squirrel's nose, comfortably separated from the ears; cut stems point toward lower-right. Flowers form a compact clearly readable fan. Left tail mass balanced by right bouquet; body remains between them, animal is recognizable immediately from tail and profile. Whole composition compact, centered, no ground, tree, acorns or extras.\n\nA single powerful silhouette with naturally varying fine pen-and-ink lines and crosshatching following form and surface curvature. Dark ink #15120F and antique ivory #F8F3E7 paper highlights only in the animal AND every part of the bouquet. Sharp engraved edges, subtle organic print character, distinct depth, intentional high/low detail zones, broad light ivory areas. Anatomically credible adult animal, realistic eyes and muzzle, expressive through pose, never a cartoon mascot. Flower petals, centers, stems, leaves and ribbon must ALL be black and ivory; no green foliage or colored petals.\nThe bouquet and animal must physically interlock via the SPECIFIED grip with clear fingers/paws in front of and behind stems. Exactly ONE animal and ONE tied flower bouquet, no bird, branches, scenery or other props.\nThe bouquet uses the established three flowers: one 7–8-petaled cosmos-like flower, one smaller five-petaled wild rose and one partly open tulip; two restrained leaves and one small plain ivory ribbon tying the stems. Flower heads must be bold and readable, not tiny decoration. Entire figure and bouquet fit comfortably inside the tile, no cropped ears, tail, feet or petals.\nVery readable overall at 32px app-icon size; silhouette takes approximately 76–80% of tile dimensions with generous margins. No icon label or text. No generic flattened vector style, cartoon contours, 3D rendering, metallic sheen, gradient, glow, star particles, UI glyphs, floating arrows, ground shadow, sticker outline or watermark. Art should feel conceived as a timeless engraved print, designed for this exact rounded-square shape.\nCritically important: use the APPROVED REFERENCES FOR ART STYLE, PALETTE AND FLOWER CONTINUITY ONLY. Produce the specified new original animal composition."
+    },
+    {
+      "id": "c",
+      "name": "Demetli Su Samuru",
+      "animal": "Su samuru",
+      "rationale": "Demeti kollarında tutuşu, çalışma araçlarını el altında bulundurma hissi veriyor.",
+      "difference": "Yatık çapraz gövde, geniş arka ayaklar, kucaklanan demet.",
+      "master": "c.png",
+      "prompt": "Generate ONE original high-resolution square application icon, at least 1024x1024, as a standalone image. Follow the illustrated family DNA of the approved references: vivid flat rounded-square tile and precise black-ink / ivory nineteenth-century copperplate engraving.\nINPUT ROLES: image 1 (bird with bouquet) is a reference for the EXISTING Demet palette, flower bouquet and engraving quality only; REPLACE the bird completely with the specified animal. Image 2 (chameleon on folder) is a technique/style reference only: do not copy its animal, folder, composition or yellow background.\nAll three new animal directions use the SAME vivid jade-turquoise tile #0AAF94 so the species and silhouette can be compared fairly. The tile is full-bleed, has consistent generous 26% rounded corners, and a completely flat color with no vignette or texture. Leave comfortable internal margins. No outside mat or decorative frame.\n\nConcept title: Demetli Su Samuru.\nApplication meaning: Demet keeps a set of working tools together so the user can start them all with one action.\nCreative rationale: An otter securely cradles a small bouquet close to its chest, embodying useful things kept together and close to hand.\nMain engraved subjects: One adult otter, full body, in a compact reclining pose cradling the established tied flower bouquet across its chest. No water scene.\nIntegrated composition: A relaxed three-quarter reclining otter whose long rounded body runs on a clear diagonal from LOWER-LEFT rump toward UPPER-RIGHT head. Head is round with small anatomically correct ears, dark realistic eyes, short broad muzzle, small dark nose and delicate whiskers; no cartoon grin. A tapered muscular tail curls underneath along lower-left to form a connected rounded base. Two normal broad webbed hind feet point toward lower-left, clearly attached and anatomically plausible, not giant human feet. Both short forepaws are drawn close together at the chest, visibly hugging the bouquet by its tied stems, with one paw partly occluding the ribbon and the other behind the stems. Flower heads fan LEFT/upward across the shoulder, leaving the entire face unobscured at upper-right. Three flowers, two leaves, small ribbon, attached short stems; the bouquet feels actually held against the body. Smooth dense fur engraving follows the rounded belly and neck, broad ivory belly and muzzle highlights, dark flank hatching. A compact elegant diagonal oval silhouette, no floating bouquet, no river, rocks, water rings or extra objects.\n\nA single powerful silhouette with naturally varying fine pen-and-ink lines and crosshatching following form and surface curvature. Dark ink #15120F and antique ivory #F8F3E7 paper highlights only in the animal AND every part of the bouquet. Sharp engraved edges, subtle organic print character, distinct depth, intentional high/low detail zones, broad light ivory areas. Anatomically credible adult animal, realistic eyes and muzzle, expressive through pose, never a cartoon mascot. Flower petals, centers, stems, leaves and ribbon must ALL be black and ivory; no green foliage or colored petals.\nThe bouquet and animal must physically interlock via the SPECIFIED grip with clear fingers/paws in front of and behind stems. Exactly ONE animal and ONE tied flower bouquet, no bird, branches, scenery or other props.\nThe bouquet uses the established three flowers: one 7–8-petaled cosmos-like flower, one smaller five-petaled wild rose and one partly open tulip; two restrained leaves and one small plain ivory ribbon tying the stems. Flower heads must be bold and readable, not tiny decoration. Entire figure and bouquet fit comfortably inside the tile, no cropped ears, tail, feet or petals.\nVery readable overall at 32px app-icon size; silhouette takes approximately 76–80% of tile dimensions with generous margins. No icon label or text. No generic flattened vector style, cartoon contours, 3D rendering, metallic sheen, gradient, glow, star particles, UI glyphs, floating arrows, ground shadow, sticker outline or watermark. Art should feel conceived as a timeless engraved print, designed for this exact rounded-square shape.\nCritically important: use the APPROVED REFERENCES FOR ART STYLE, PALETTE AND FLOWER CONTINUITY ONLY. Produce the specified new original animal composition."
+    }
+  ],
+  "qa": {
+    "large": "Üç master ayrı ayrı incelendi: anatomik bütünlük, saplara temas ve bağlanan tek demet mevcut; sadece siyah/fildişi ön plan.",
+    "small": "64/32/16 gerçek piksel önizlemeleri karşılaştırma görselinde; masterdan doğrudan küçültme.",
+    "presentation": "Yalnızca karşılaştırma sayfasında dış 8px pay kırpıldı ve ortak köşe maskesi uygulandı; kaynak masterlar korunuyor.",
+    "existingBirdKit": "Korundu; yeni üretim paketi oluşturulmadı."
+  }
+}

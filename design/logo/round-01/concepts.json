@@ -1,0 +1,94 @@
+{
+  "app": "Demet",
+  "brief": "Uygulamaları, klasörleri ve web sitelerini bir demet altında toplayan, tek kısayolla sırayla başlatan hafif Windows aracı.",
+  "stage": "Concept review — waiting for A/B/C selection",
+  "recommendation": "b",
+  "exploration": {
+    "rubric": "1–5; distinctiveness×3, semantic link×2, cohesion×3, engraving×2, small size×2, family×2",
+    "seeds": [
+      {
+        "name": "Tek Halka",
+        "type": "direct",
+        "score": 66,
+        "chosen": true
+      },
+      {
+        "name": "Bağlı Ot Demeti",
+        "type": "direct",
+        "score": 58
+      },
+      {
+        "name": "Üç Yapraklı Arşiv Yelpazesi",
+        "type": "direct",
+        "score": 52
+      },
+      {
+        "name": "Dokumacı Kuş",
+        "type": "nature",
+        "score": 68,
+        "chosen": true
+      },
+      {
+        "name": "Çok Kollu Ahtapot",
+        "type": "nature",
+        "score": 58
+      },
+      {
+        "name": "Kunduzun Dal Salı",
+        "type": "nature",
+        "score": 55
+      },
+      {
+        "name": "Tek Tuş Orkestra",
+        "type": "unexpected machine",
+        "score": 64,
+        "chosen": true
+      },
+      {
+        "name": "Kurmalı Müzik Kutusu",
+        "type": "historical machine",
+        "score": 59
+      },
+      {
+        "name": "Açılan Tohum Kapsülü",
+        "type": "shape fusion",
+        "score": 57
+      }
+    ]
+  },
+  "concepts": [
+    {
+      "id": "a",
+      "name": "Tek Halka",
+      "proposedBackground": "#F5A524",
+      "file": "a.png",
+      "prompt": "Generate ONE original high-resolution 1024x1024 square application icon as a standalone image. Follow the illustrated family DNA of the approved reference image: vivid flat rounded-square tile and precise black-ink / ivory nineteenth-century copperplate engraving. The attached image is a STYLE REFERENCE ONLY, not an edit target. Do not replicate the animal, folder, composition or yellow. Full-bleed rounded-square tile occupies the entire square with consistent corner radius of 22% and no outer mat; generous internal breathing room.\n\nConcept title: Tek Halka.\nApplication meaning: Demet is a Windows launcher that groups applications, folders and websites into a bundle and launches the whole group with one keyboard shortcut.\nCreative rationale: Several distinct keys on one shared ring represent different tools made accessible by a single action.\nMain engraved subjects: Exactly three distinctive antique skeleton keys threaded physically through one thick simple oval keyring, all in black ink and ivory.\nIntegrated composition: A compact fanned bundle of three actual keys, their three closed bow holes visibly threaded onto the SAME small ring at upper center, three shafts fanning downward: left key short with rounded clover bow and simple square tooth; middle key longest and slightly diagonal right with oval bow and two bold teeth; right key short with diamond bow and a different broad single tooth. Ring occupies upper fifth, key shafts occupy center and bottom, keys overlap each other naturally near the ring, with clear foreground/background occlusions. Elegant broad ivory bodies with fine engraved form shading, clean negative gaps between the three key shafts. Overall fan-shaped silhouette takes 76% of tile width and 78% height, centered optically, robust teeth visible at small size. Each key genuinely hangs from the ring through its own bow, no impossible joints, no detached key.\nBackground color: #F5A524 warm vivid amber, matching the app's existing amber accent.\n\nA single powerful silhouette with naturally varying fine pen-and-ink lines and crosshatching following form and surface curvature. Dark ink #15120F lines and antique ivory #F8F3E7 paper highlights only in the figure, sharp engraved edges and subtle organic print character, distinct depth and intentional high/low detail zones. The physical objects should interlock naturally rather than look like separate pasted illustrations. Very readable overall at small app-icon sizes; no elements outside tile. No icon label or text. No red/green/blue fill in the figure, only black and ivory. No generic flattened vector style, cartoon contours, 3D rendering, metallic sheen, gradient, glow, star particles, UI glyphs, floating arrows, or watermark. No ground shadow or drop-shadow sticker effect. Background strictly one solid flat color without vignette. Art should feel conceived as a timeless print and designed for this exact rounded-square shape.\nCritically important: use the APPROVED REFERENCE FOR ART STYLE ONLY, not for duplicating its chameleon, folder or overall composition. The image must be an original concept."
+    },
+    {
+      "id": "b",
+      "name": "Dokumacı Kuş",
+      "proposedBackground": "#19A78F",
+      "file": "b.png",
+      "prompt": "Generate ONE original high-resolution 1024x1024 square application icon as a standalone image. Follow the illustrated family DNA of the approved reference image: vivid flat rounded-square tile and precise black-ink / ivory nineteenth-century copperplate engraving. The attached image is a STYLE REFERENCE ONLY, not an edit target. Do not replicate the animal, folder, composition or yellow. Full-bleed rounded-square tile occupies the entire square with consistent corner radius of 22% and no outer mat; generous internal breathing room.\n\nConcept title: Dokumacı Kuş.\nApplication meaning: Demet gathers applications, folders and websites into one reusable bundle, so the user starts a whole working environment with one keyboard shortcut.\nCreative rationale: A resourceful weaver bird gathers different strands into one useful bundle, like the app gathers a working set of tools.\nMain engraved subjects: One anatomically credible compact weaver bird, its bill firmly holding a small bundle of exactly three gracefully curved grass stems. No nest and no other animals.\nIntegrated composition: Natural-history side-profile weaver bird facing RIGHT, rounded alert ivory head, small realistic dark eye without cartoon exaggeration, short conical closed beak gripping the shared midpoint of three long grass stems, one stem with a small seed head. Bird captured in a compact airborne pose: one visible wing folded halfway up and back, the far wing largely occluded, short tapering tail sweeps down-left, two tiny normal feet tucked against belly. The stems extend right and down, gathered tightly within the closed beak then fanning naturally toward lower-right, physically contacted and occluded by the upper and lower mandibles. No detached floating stalks. Overall connected silhouette forms a dynamic diagonal from lower-left tail through center body to upper-right bill, with stems curving back into the tile. Bird dominates 72% tile width, one coherent expressive form, ample ivory breast, restrained feather detail; generous clear border.\nBackground color: #19A78F vivid jade turquoise, perfectly flat.\n\nA single powerful silhouette with naturally varying fine pen-and-ink lines and crosshatching following form and surface curvature. Dark ink #15120F lines and antique ivory #F8F3E7 paper highlights only in the figure, sharp engraved edges and subtle organic print character, distinct depth and intentional high/low detail zones. The physical objects should interlock naturally rather than look like separate pasted illustrations. Very readable overall at small app-icon sizes; no elements outside tile. No icon label or text. No red/green/blue fill in the figure, only black and ivory. No generic flattened vector style, cartoon contours, 3D rendering, metallic sheen, gradient, glow, star particles, UI glyphs, floating arrows, or watermark. No ground shadow or drop-shadow sticker effect. Background strictly one solid flat color without vignette. Art should feel conceived as a timeless print and designed for this exact rounded-square shape.\nCritically important: use the APPROVED REFERENCE FOR ART STYLE ONLY, not for duplicating its chameleon, folder or overall composition. The image must be an original concept."
+    },
+    {
+      "id": "c",
+      "name": "Tek Tuş Orkestra",
+      "proposedBackground": "#EE6B4D",
+      "file": "c.png",
+      "prompt": "Generate ONE original high-resolution 1024x1024 square application icon as a standalone image. Follow the illustrated family DNA of the approved reference image: vivid flat rounded-square tile and precise black-ink / ivory nineteenth-century copperplate engraving. The attached image is a STYLE REFERENCE ONLY, not an edit target. Do not replicate the animal, folder, composition or yellow. Full-bleed rounded-square tile occupies the entire square with consistent corner radius of 22% and no outer mat; generous internal breathing room.\n\nConcept title: Tek Tuş Orkestra.\nApplication meaning: Demet starts several different applications, folders and websites in a controlled sequence from a single keyboard shortcut.\nCreative rationale: A single key feeding several organ pipes makes one small mechanism coordinate many voices.\nMain engraved subjects: One unusual miniature antique three-pipe positive organ with exactly ONE prominent broad ivory keyboard key and three tall sculptural flue pipes of different heights; all black ink and ivory.\nIntegrated composition: A compact architectonic object in subtle three-quarter view, no scene or musician. Three thick cylindrical organ pipes emerge physically from one low shared rectangular wooden wind chest; the center pipe tallest, left pipe medium, right pipe shortest, creating a clear stepped crown. Each pipe has a single crisp dark rectangular mouth near its lower quarter; top ends are plain round openings. Three pipes close together with small gaps, connected to the shared base, NOT floating. A single broad ivory piano-style key projects toward viewer from front center of the chest, visibly mounted on a small hinge at its rear, like a one-key instrument ready to set all three pipes sounding. No extra keyboard rows or knobs. Clean high-contrast pipe bodies with organic fine hatching following cylinders, chest restrained wood engraving. Upright sculptural silhouette fills 68% width and 78% height, optically centered, bold ivory pipe fronts and dark connected base readable at 32px. No sound waves, no music notes.\nBackground color: #EE6B4D vivid warm vermilion coral, flat uniform color.\n\nA single powerful silhouette with naturally varying fine pen-and-ink lines and crosshatching following form and surface curvature. Dark ink #15120F lines and antique ivory #F8F3E7 paper highlights only in the figure, sharp engraved edges and subtle organic print character, distinct depth and intentional high/low detail zones. The physical objects should interlock naturally rather than look like separate pasted illustrations. Very readable overall at small app-icon sizes; no elements outside tile. No icon label or text. No red/green/blue fill in the figure, only black and ivory. No generic flattened vector style, cartoon contours, 3D rendering, metallic sheen, gradient, glow, star particles, UI glyphs, floating arrows, or watermark. No ground shadow or drop-shadow sticker effect. Background strictly one solid flat color without vignette. Art should feel conceived as a timeless print and designed for this exact rounded-square shape.\nCritically important: use the APPROVED REFERENCE FOR ART STYLE ONLY, not for duplicating its chameleon, folder or overall composition. The image must be an original concept."
+    }
+  ],
+  "differences": {
+    "a": "Nesne grubu, aşağı açılan yelpaze, amber zemin.",
+    "b": "Doğal karakter, hareketli çapraz siluet, yeşim zemin.",
+    "c": "Tarihsel makine, dik mimari siluet, mercan zemin."
+  },
+  "qa": {
+    "originalDimensions": "1254×1254 each",
+    "large": "All three masters inspected; coherent physical contact and monochrome foregrounds.",
+    "small": "64/32/16 px previews resized directly from original-resolution display crop. Silhouettes remain distinct at 32px; a separately simplified 16px artwork may help after selection.",
+    "presentation": "8px external black generation mat clipped for board display only; consistent 28% rounded-corner mask. Originals untouched.",
+    "productionAssets": "Not exported — user selection checkpoint."
+  }
+}
