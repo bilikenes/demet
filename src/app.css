@@ -154,7 +154,8 @@ section:first-child > .app-sp-title { margin-top: var(--space-2); }
 .ui-shell-main:has(.app-welcome) { display: flex; flex-direction: column; padding-bottom: var(--space-4); }
 .app-welcome { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
 .app-welcome-body { margin: auto 0; display: flex; flex-direction: column; align-items: center; gap: var(--space-4); width: 100%; }
-.app-welcome-mark { width: var(--space-16); height: var(--space-16); border-radius: var(--radius-xl); display: grid; place-items: center; background: var(--color-accent); color: var(--color-on-accent); }
+.app-welcome-mark { width: calc(var(--space-20) + var(--space-8)); height: calc(var(--space-20) + var(--space-8)); border-radius: var(--radius-2xl); display: grid; place-items: center; background: var(--color-accent); color: var(--color-on-accent); box-shadow: 0 var(--space-4) var(--space-12) color-mix(in srgb, var(--color-accent) 35%, transparent); }
+.app-welcome-symbol { display: block; width: calc(var(--space-16) + var(--space-8)); height: calc(var(--space-16) + var(--space-8)); background: currentColor; mask: url("/welcome-monkey.png") center / contain no-repeat; }
 .app-welcome-title { margin: 0; font-size: var(--text-3xl); font-weight: var(--weight-bold); letter-spacing: var(--tracking-tight); color: var(--color-text); }
 .app-welcome-text { margin: 0; max-width: 520px; color: var(--color-text-muted); line-height: var(--leading-normal); } /* ui-allow */
 .app-welcome-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); width: 100%; max-width: 760px; margin-top: var(--space-6); } /* ui-allow */

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="tr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demet karşılama işareti — görsel kontrol</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module">
+      import React from "react";
+      import { createRoot } from "react-dom/client";
+      import "@fontsource-variable/inter";
+      import "/src/ui/index.ts";
+      import "/src/app.css";
+      import { WelcomeView } from "/src/WelcomeView.tsx";
+
+      const h = React.createElement;
+      const noop = () => {};
+      createRoot(document.getElementById("root")).render(
+        h("div", { className: "ui-page" },
+          h("div", { className: "ui-glow" }),
+          h("div", { className: "ui-shell is-solo" },
+            h("main", { className: "ui-shell-main" },
+              h(WelcomeView, { onSnapshot: noop, onCreateEmpty: noop, onPickInstalled: noop })
+            )
+          )
+        )
+      );
+    </script>
+  </body>
+</html>

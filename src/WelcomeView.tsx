@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { AppWindow, ListChecks, Plus, Rocket } from "lucide-react";
+import { AppWindow, ListChecks, Plus } from "lucide-react";
 
 interface Option {
   icon: ReactNode;
@@ -40,7 +40,7 @@ export function WelcomeView({
   return (
     <section className="app-welcome" aria-labelledby="app-welcome-title">
       <div className="app-welcome-body">
-      <span className="app-welcome-mark" aria-hidden="true"><Rocket size={28} /></span>
+      <span className="app-welcome-mark" aria-hidden="true"><span className="app-welcome-symbol" /></span>
       <h1 id="app-welcome-title" className="app-welcome-title">Bir demet oluşturalım</h1>
       <p className="app-welcome-text">
         Demet, tek kısayolla birlikte açılan uygulama, klasör ve web adreslerinin listesidir.
